@@ -6,23 +6,64 @@ TODO: Delete this and the text above, and describe your gem
 
 ## Installation
 
-Add this line to your application's Gemfile:
-
 ```ruby
 gem 'itamae-secrets'
 ```
 
-And then execute:
-
-    $ bundle
-
-Or install it yourself as:
+or
 
     $ gem install itamae-secrets
 
+## Basic
+
+- `itamae-secrets` command for storing data or manually reading
+  - specify base directory to `--base` option
+  - you should exclude `{base}/keys` from checking into VCS.
+
 ## Usage
 
-TODO: Write usage instructions here
+### Storing data
+
+#### With a key file (AES)
+
+##### Generating randomly
+
+```
+itamae-secrets genkey --base=./secret --method=aes-file useful_key
+```
+
+##### Generating from passphrase
+
+```
+itamae-secrets genkey --base=./secret --method=aes-passphrase useful_key
+```
+
+##### Store using it
+
+```
+itamae-secrets store --method=aes --key=useful_key awesome_secret
+```
+
+#### With a key file (RSA)
+
+TBD
+
+### Using data
+
+#### CLI
+
+```
+itamae-secrets read awesome_secret
+```
+
+#### Itamae
+
+on your itamae recipe, do:
+
+```
+require 'itamae/secrets'
+node[:secrets] = Itamae::Secrets.load(File.join(__dir__, 'secrets'))
+```
 
 ## Development
 
@@ -32,7 +73,7 @@ To install this gem onto your local machine, run `bundle exec rake install`. To 
 
 ## Contributing
 
-Bug reports and pull requests are welcome on GitHub at https://github.com/[USERNAME]/itamae-secrets.
+Bug reports and pull requests are welcome on GitHub at https://github.com/sorah/itamae-secrets.
 
 
 ## License
