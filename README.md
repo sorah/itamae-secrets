@@ -1,9 +1,5 @@
 # Itamae::Secrets
 
-Welcome to your new gem! In this directory, you'll find the files you need to be able to package up your Ruby library into a gem. Put your Ruby code in the file `lib/itamae/secrets`. To experiment with that code, run `bin/console` for an interactive prompt.
-
-TODO: Delete this and the text above, and describe your gem
-
 ## Installation
 
 ```ruby
@@ -26,35 +22,26 @@ or
 
 #### With a key file (AES)
 
+
 ##### Generating randomly
 
 ```
-itamae-secrets genkey --base=./secret --method=aes-file useful_key
+itamae-secrets newkey --base=./secret --method=aes-random
 ```
 
 ##### Generating from passphrase
 
 ```
-itamae-secrets genkey --base=./secret --method=aes-passphrase useful_key
+itamae-secrets newkey --base=./secret --method=aes-passphrase
 ```
 
 ##### Store using it
 
 ```
-itamae-secrets store --method=aes --key=useful_key awesome_secret
+itamae-secrets set --base=./secret awesome_secret
 ```
 
-#### With a key file (RSA)
-
-TBD
-
-### Using data
-
-#### CLI
-
-```
-itamae-secrets read awesome_secret
-```
+### Reading data
 
 #### Itamae
 
@@ -62,7 +49,22 @@ on your itamae recipe, do:
 
 ```
 require 'itamae/secrets'
-node[:secrets] = Itamae::Secrets.load(File.join(__dir__, 'secrets'))
+node[:secrets] = Itamae::Secrets(File.join(__dir__, 'secrets'))
+
+# Use it
+p node[:secrets][:awesome_secret]
+```
+
+#### CLI
+
+```
+itamae-secrets get --base=./secret awesome_secret
+```
+
+### Remembering `--base`
+
+```
+$ echo 'base: ./secret' >> .itamae-secrets.yml
 ```
 
 ## Development
@@ -74,6 +76,8 @@ To install this gem onto your local machine, run `bundle exec rake install`. To 
 ## Contributing
 
 Bug reports and pull requests are welcome on GitHub at https://github.com/sorah/itamae-secrets.
+
+__Security issues?__ Send me directly at `security@sorah.jp`. My GPG key is available here: <http://sorah.jp/id.html> ([SSL](https://github.com/sorah/sorah.jp/tree/master/source/pgp-pubkeys))
 
 
 ## License
