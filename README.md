@@ -50,7 +50,7 @@ $ itamae-secrets set --base=./secret awesome_secret value
 
 on your itamae recipe, do:
 
-```
+``` ruby
 require 'itamae/secrets'
 node[:secrets] = Itamae::Secrets(File.join(__dir__, 'secrets'))
 
