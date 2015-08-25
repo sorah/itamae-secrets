@@ -27,13 +27,13 @@ $ gem install itamae-secrets
 ##### randomly
 
 ```
-itamae-secrets newkey --base=./secret --method=aes-random
+$ itamae-secrets newkey --base=./secret --method=aes-random
 ```
 
 ##### from passphrase
 
 ```
-itamae-secrets newkey --base=./secret --method=aes-passphrase
+$ itamae-secrets newkey --base=./secret --method=aes-passphrase
 ```
 
 Both generates `./secret/keys/default`. Make sure `./secret/keys` be excluded from VCS.
@@ -41,7 +41,7 @@ Both generates `./secret/keys/default`. Make sure `./secret/keys` be excluded fr
 ### Store value
 
 ```
-itamae-secrets set --base=./secret awesome_secret value
+$ itamae-secrets set --base=./secret awesome_secret value
 ```
 
 (when omit `value`, it'll read from STDIN until EOF. You can also use `--noecho` if you want hide value in your terminal's buffer completely.)
@@ -61,7 +61,7 @@ p node[:secrets][:awesome_secret]
 ### Reading data fro CLI
 
 ```
-itamae-secrets get --base=./secret awesome_secret
+$ itamae-secrets get --base=./secret awesome_secret
 ```
 
 ### Remembering `--base`
