@@ -87,3 +87,6 @@ __Security issues?__ Send me directly at `security@sorah.jp`. My GPG key is avai
 
 The gem is available as open source under the terms of the [MIT License](http://opensource.org/licenses/MIT).
 
+## To-dos
+
+- [ ] Missing test :(
