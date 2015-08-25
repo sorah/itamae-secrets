@@ -1,4 +1,6 @@
-# Itamae::Secrets
+# Itamae::Secrets - Encrypted Data Bag for Itamae
+
+This is [itamae](https://github.com/itamae-kitchen/itamae) plugin that provides store for secrets, like encrypted data bag in chef.
 
 ## Installation
 
@@ -8,42 +10,43 @@ gem 'itamae-secrets'
 
 or
 
-    $ gem install itamae-secrets
+```
+$ gem install itamae-secrets
+```
 
 ## Basic
 
 - `itamae-secrets` command for storing data or manually reading
   - specify base directory to `--base` option
-  - you should exclude `{base}/keys` from checking into VCS.
+  - you should exclude `${base}/keys` from checking into VCS. (`.gitignore` it!)
 
-## Usage
+## Walkthrough
 
-### Storing data
+### Generate a key
 
-#### With a key file (AES)
-
-
-##### Generating randomly
+##### randomly
 
 ```
 itamae-secrets newkey --base=./secret --method=aes-random
 ```
 
-##### Generating from passphrase
+##### from passphrase
 
 ```
 itamae-secrets newkey --base=./secret --method=aes-passphrase
 ```
 
-##### Store using it
+Both generates `./secret/keys/default`. Make sure `./secret/keys` be excluded from VCS.
+
+### Store value
 
 ```
-itamae-secrets set --base=./secret awesome_secret
+itamae-secrets set --base=./secret awesome_secret value
 ```
 
-### Reading data
+(when omit `value`, it'll read from STDIN until EOF. You can also use `--noecho` if you want hide value in your terminal's buffer completely.)
 
-#### Itamae
+### Reading data from itamae
 
 on your itamae recipe, do:
 
@@ -55,7 +58,7 @@ node[:secrets] = Itamae::Secrets(File.join(__dir__, 'secrets'))
 p node[:secrets][:awesome_secret]
 ```
 
-#### CLI
+### Reading data fro CLI
 
 ```
 itamae-secrets get --base=./secret awesome_secret
