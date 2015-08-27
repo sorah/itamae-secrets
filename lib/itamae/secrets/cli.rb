@@ -27,7 +27,7 @@ module Itamae
           passphrase = ask_noecho('Passphrase:', true)
           AesKey.generate_pkcs5(name, passphrase)
         else
-          raise ArgumentError, "Unknown method: #{name.inspect}"
+          raise ArgumentError, "Unknown method: #{options[:method] || config['generate_method']}"
         end
 
         keychain.save(key)
