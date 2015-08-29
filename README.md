@@ -17,8 +17,9 @@ $ gem install itamae-secrets
 ## Basic
 
 - `itamae-secrets` command for storing data or manually reading
-  - specify base directory to `--base` option
-  - you should exclude `${base}/keys` from checking into VCS. (`.gitignore` it!)
+- `Itamae::Secrets` interface for itamae recipes
+- Data are stored in _base directory._
+  - You must avoid `${base}/keys` from checked into VCS. (`.gitignore` it!)
 
 ## Walkthrough
 
