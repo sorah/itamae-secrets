@@ -18,7 +18,7 @@ module Itamae
 
       def load(name)
         AesKey.load_json @path.join(name).read
-      rescue File::ENOENT
+      rescue Errno::ENOENT
         raise KeyNotFound, "Couldn't find key #{name.inspect}"
       end
 
