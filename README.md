@@ -59,7 +59,7 @@ node[:secrets] = Itamae::Secrets(File.join(__dir__, 'secrets'))
 p node[:secrets][:awesome_secret]
 ```
 
-### Reading data fro CLI
+### Reading data from CLI
 
 ```
 $ itamae-secrets get --base=./secret awesome_secret
