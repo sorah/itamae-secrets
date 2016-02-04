@@ -27,7 +27,15 @@ module Itamae
       end
 
       def [](name)
-        name = name.to_s
+        fetch(name, nil)
+      end
+
+      def fetch(*args)
+        if args.size > 2
+          raise ArgumentError, "wrong number of arguments (#{args.size} for 1..2)"
+        end
+
+        name = args[0].to_s
         validate_name!(name)
 
         value_path = values_path.join(name)
@@ -37,7 +45,11 @@ module Itamae
           encrypted_data.key = keychain.load(encrypted_data.key_name)
           JSON.parse(encrypted_data.plaintext)['value']
         else
-          nil
+          if args.size == 1
+            raise KeyError, "key not found: #{name}"
+          else
+            args[1]
+          end
         end
       end
 
