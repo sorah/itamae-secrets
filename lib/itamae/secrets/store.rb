@@ -79,7 +79,6 @@ module Itamae
       private
 
       def ensure_base_dir!
-        base_dir.mkpath
         base_dir.join('keys').mkpath
         base_dir.join('values').mkpath
       end
