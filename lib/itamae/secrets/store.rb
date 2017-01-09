@@ -79,8 +79,13 @@ module Itamae
       private
 
       def ensure_base_dir!
-        base_dir.join('keys').mkpath
-        base_dir.join('values').mkpath
+        unless base_dir.exist?
+          Dir.mkdir(base_dir)
+        end
+        %w(keys values).each do |x|
+          path = base_dir.join(x)
+          Dir.mkdir(path) unless File.exist?(path)
+        end
       end
 
       def validate_name!(name)
