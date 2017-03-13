@@ -24,7 +24,7 @@ module Itamae
         when 'aes-random'
           AesKey.generate_random(name)
         when 'aes-passphrase'
-          passphrase = ask_noecho('Passphrase:', true)
+          passphrase = ask_noecho('Passphrase:', $stdin.tty?)
           AesKey.generate_pkcs5(name, passphrase)
         else
           raise ArgumentError, "Unknown method: #{options[:method] || config['generate_method']}"
