@@ -53,7 +53,7 @@ on your itamae recipe, do:
 
 ``` ruby
 require 'itamae/secrets'
-node[:secrets] = Itamae::Secrets(File.join(__dir__, 'secrets'))
+node[:secrets] = Itamae::Secrets(File.join(__dir__, 'secret'))
 
 # Use it
 p node[:secrets][:awesome_secret]
