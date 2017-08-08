@@ -36,9 +36,12 @@ module Itamae
       desc 'set VARNAME [VALUE]', 'store value (when VALUE is omitted, read from STDIN)'
       method_option :key, type: :string, default: 'default', desc: 'key name'
       method_option :noecho, type: :boolean, desc: 'Ask one-line value with noecho when stdin is tty'
+      method_option :path, type: :string, desc: 'Path of file containing VALUE'
       def set(name, value = nil)
         value ||= if options[:noecho]
                     ask_noecho("#{name}:", false)
+                  elsif options[:path]
+                    File.read(File.expand_path(options[:path]))
                   else
                     $stdin.read.chomp
                   end
