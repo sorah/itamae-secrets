@@ -12,7 +12,7 @@ module Itamae
 
 
       desc 'newkey [KEYNAME]', 'generate then save key'
-      method_option :method, type: :string, required: true, desc: 'generating method (aes-file, aes-passphrase)'
+      method_option :method, type: :string, required: true, desc: 'generating method (aes-random, aes-passphrase)'
       method_option :confirm_passphrase, type: :boolean, default: true, desc: 'Confirm passphrase when asking'
 
       def newkey(name='default')
