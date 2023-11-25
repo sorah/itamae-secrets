@@ -90,7 +90,7 @@ module Itamae
 
       def validate_name!(name)
         # XXX: dupe
-        raise ArgumentError, "name must not contain slashes, commas, backslackes" if name.include?("\\") || name.include?(?/) || name.include?(?:)
+        raise ArgumentError, "name must not contain slashes, colons, backslackes" if name.include?("\\") || name.include?(?/) || name.include?(?:)
       end
     end
   end
